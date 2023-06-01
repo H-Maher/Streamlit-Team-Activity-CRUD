@@ -25,7 +25,7 @@ class TeamActivityForm():
         scope = ['https://www.googleapis.com/auth/spreadsheets',
                  "https://www.googleapis.com/auth/drive"]
         
-        credentials = ServiceAccountCredentials.from_json_keyfile_name("gs_credentials.json", scope)
+        credentials = ServiceAccountCredentials.from_json_keyfile_name("./security/gs_credentials.json", scope)
         client = gspread.authorize(credentials)
 
         # Get the Google Sheet
