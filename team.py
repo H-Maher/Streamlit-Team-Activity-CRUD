@@ -5,6 +5,7 @@ import pandas as pd
 from oauth2client.service_account import ServiceAccountCredentials
 
 
+
 class TeamActivityForm():
 
     def __init__(self):
@@ -45,9 +46,10 @@ class TeamActivityForm():
             st.session_state.duration_from = st.session_state.duration_from
             st.session_state.duration_to = st.session_state.duration_to
 
-
+      
         with st.sidebar:
             st.image('https://www.dataplusme.com/images/logo/alogo.jpg')
+
             st.button('Click Me!')
 
         with st.container():
@@ -55,7 +57,7 @@ class TeamActivityForm():
 
             today_date = datetime.date.today()
             date = col1.date_input('Date', today_date, key='date')
-            resource = col2.selectbox('Resource', self.resources_list, key='resource')
+            resource = col2.selectbox('Resource', [st.session_state["name"]], key='resource')
             customers_dropdown = col3.selectbox("Choose Customer", self.customers_list, key='customers_dropdown')
             
             filtered_projects = self.projects_list[self.projects_list['Customer'] == st.session_state.customers_dropdown]['Project Name']

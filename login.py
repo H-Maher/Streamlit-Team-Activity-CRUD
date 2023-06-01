@@ -21,30 +21,10 @@ authenticator = stauth.Authenticate(
 
 name, authentication_status, username = authenticator.login('Login', 'main')
 
-# # Forget Password Block
-# try:
-#     username_forgot_pw, email_forgot_password, random_password = authenticator.forgot_password('Forgot password')
-#     if username_forgot_pw:
-#         st.success('New password sent securely')
-#         # Random password to be transferred to user securely
-#     else:
-#         st.error('Username not found')
-# except Exception as e:
-#     st.error(e)
-
-# # Register New User
-# try:
-#     if authenticator.register_user('Register user', preauthorization=False):
-#         st.success('User registered successfully')
-# except Exception as e:
-#     st.error(e)
-
 # Login Block
 if authentication_status:
     authenticator.logout('Logout', 'main', key='unique_key')
     st.write(f'Welcome *{name}*')
-    st.title('Some content')
-
     entry_person = TeamActivityForm()
     entry_person.generate_form()
     
@@ -53,12 +33,46 @@ elif authentication_status is False:
 elif authentication_status is None:
     st.warning('Please enter your username and password')
 
-# # Reset Password Block
-# if authentication_status:
+# Forget Password Block
+def forget_password():
+  
+  try:
+    username_forgot_pw, email_forgot_password, random_password = authenticator.forgot_password('Forgot password')
+    if username_forgot_pw:
+        st.success('New password sent securely')
+        # Random password to be transferred to user securely
+    else:
+        st.error('Username not found')
+  except Exception as e:
+    st.error(e)
+
+# # Register New User
+# def register_new_user():
 #     try:
-#         if authenticator.reset_password(username, 'Reset password'):
-#             with open('./security/config.yaml', 'w') as file:
-#                 yaml.dump(config, file, default_flow_style=False)
-#             st.success('Password modified successfully')
+#      if authenticator.register_user('Register user', preauthorization=False):
+#         st.success('User registered successfully')
 #     except Exception as e:
-#         st.error(e)
+#      st.error(e)
+
+
+def change_password():
+    # Reset Password Block
+    if authentication_status:
+        try:
+            if authenticator.reset_password(username, 'Reset password'):
+                with open('./security/config.yaml', 'w') as file:
+                    yaml.dump(config, file, default_flow_style=False)
+                st.success('Password modified successfully')
+        except Exception as e:
+            st.error(e)
+
+
+# with st.expander("Forget Password"):
+#     forget_password()
+
+#     with st.expander("Register New User"):
+#         register_new_user()
+
+# with col3:
+#    with st.expander("Reset Password"):
+#         reset_password()
