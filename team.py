@@ -39,7 +39,7 @@ class TeamActivityForm():
 
     def generate_form(self):
 
-        st.title(form_icon + " " + "Welcome to Dataplus Team Activity Form")
+        st.title(":mag: Welcome to Dataplus Team Activity Form")
 
         def __prepare_entry_row():
             st.session_state.duration_from = st.session_state.duration_from
