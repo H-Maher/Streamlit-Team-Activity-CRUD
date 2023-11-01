@@ -7,6 +7,8 @@ from yaml.loader import SafeLoader
 with open('./security/config.yaml') as file:
     config = yaml.load(file, Loader=SafeLoader)
 
+form_icon = ":mag:"
+st.set_page_config(page_title='Dataplus Team Activity Form', page_icon=form_icon, layout='centered')
 
 authenticator = stauth.Authenticate(
     config['credentials'],

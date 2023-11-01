@@ -90,11 +90,13 @@ class TeamActivityForm():
 
 
             if submit_button:
-
+                
+                # Besides prearing the entry row, append a (No) value at the end to fill in the "Billed" column
+                # This is a temp solution until we implement a better billing solutions on the rows in the coming versions
                 prepared_entry_row = [st.session_state.resource, str(st.session_state.date), st.session_state.customers_dropdown,
                                       st.session_state.project_name, st.session_state.task_name, st.session_state.task_category,
                                       str(st.session_state.duration_from), str(st.session_state.duration_to),
-                                      st.session_state.description, st.session_state.billable]
+                                      st.session_state.description, st.session_state.billable, "No"]
 
                 self.activity_sheet.append_row(prepared_entry_row, value_input_option='USER_ENTERED')
 
