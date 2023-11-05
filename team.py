@@ -58,7 +58,7 @@ class TeamActivityForm():
             today_date = datetime.date.today()
             date = col1.date_input('Date', today_date, key='date')
             resource = col2.selectbox('Resource', [st.session_state["name"]], key='resource')
-            customers_dropdown = col3.selectbox("Choose Customer", self.customers_list, key='customers_dropdown')
+            customers_dropdown = col3.selectbox("Choose Customer", self.customers_list, index=None, key='customers_dropdown')
             
             filtered_projects = self.projects_list[self.projects_list['Customer'] == st.session_state.customers_dropdown]['Project Name']
 
@@ -67,7 +67,7 @@ class TeamActivityForm():
             with st.container():
                 col1, col2 = st.columns([1,1])
 
-                project_name = col1.selectbox ('Project Name', options=filtered_projects, key='project_name')
+                project_name = col1.selectbox ('Project Name', options=filtered_projects, index=None, key='project_name')
                 task_name = col2.text_input('Task Name', key='task_name')
 
 
@@ -77,7 +77,7 @@ class TeamActivityForm():
                 currentTime = datetime.datetime.now()
                 durationFrom = col1.time_input('From', key='duration_from')
                 durationTo = col2.time_input('To', key='duration_to')
-                task_category = col3.selectbox('Task Category', self.task_category_list, key='task_category')
+                task_category = col3.selectbox('Task Category', self.task_category_list, index=None, key='task_category')
                 
             with st.container():
                 col1, col2 = st.columns([2,1])
